@@ -1,0 +1,57 @@
+appId: com.khatadalo.pos
+productName: Khata Dalo
+copyright: Copyright © 2026 Khata Dalo
+
+directories:
+  output: release
+  buildResources: build
+
+asar: false
+
+files:
+  - dist/**/*
+  - electron/**/*
+  - backend/**/*
+  - build/icon.png
+  - backend-setup.bat
+  - package.json
+  - "!backend/.venv{,/**/*}"
+  - "!backend/khata_dalo.db"
+  - "!backend/backups{,/**/*}"
+  - "!backend/**/__pycache__{,/**/*}"
+  - "!backend/**/*.pyc"
+
+extraMetadata:
+  main: electron/main.cjs
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.ico
+  artifactName: "KhataDalo-Setup-v${version}.${ext}"
+  # No code-signing certificate is configured for this project. Without
+  # this, electron-builder auto-discovers any local cert in the Windows
+  # certificate store and shells out to signtool.exe, which can hang
+  # indefinitely (e.g. waiting on a timestamp server). signtoolOptions
+  # set to null fully disables that step.
+  signtoolOptions:
+    sign: null
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Khata Dalo
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  installerSidebar: build/installer-sidebar.bmp
+  uninstallerSidebar: build/uninstaller-sidebar.bmp
+  artifactName: "KhataDalo-Setup-v${version}.${ext}"
+
+# Phase 2+ targets (macOS/Linux) can be added here later if the product
+# ever needs to run beyond Windows. Phase 1 is Windows-only per spec.

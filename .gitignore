@@ -1,0 +1,9 @@
+node_modules
+dist
+release
+.DS_Store
+backend/.venv
+backend/khata_dalo.db
+backend/backups
+backend/**/__pycache__
+backend/**/*.pyc
